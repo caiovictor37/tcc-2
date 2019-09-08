@@ -63,6 +63,6 @@ database
   .sync({ force: false })
   .then(() => {
     app.listen(8081, () => {
-      console.log('listening to port localhost:8081')
+      console.log('Listening to port localhost:8081')
     })
   })
