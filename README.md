@@ -1,6 +1,6 @@
 # tcc-2
 
-> A Vue.js project
+> A Vue.js project for TCC 2
 
 ## Build Setup
 
