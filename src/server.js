@@ -5,6 +5,10 @@ const Sequelize = require('sequelize')
 const finale = require('finale-rest')
 const OktaJwtVerifier = require('@okta/jwt-verifier')
 
+// @CAIO: Config IP
+// const hostName = 'localhost'
+const hostName = '187.1.90.150'
+
 const oktaJwtVerifier = new OktaJwtVerifier({
   clientId: '0oa1b3uwzxt0W2rU7357',
   issuer: 'https://dev-360836.okta.com/oauth2/default'
@@ -42,8 +46,14 @@ let database = new Sequelize({
 // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
 let Post = database.define('posts', {
-  title: Sequelize.STRING,
+  title: Sequelize.TEXT,
   body: Sequelize.TEXT
+})
+
+let Workday = database.define('workday', {
+  name: Sequelize.TEXT,
+  activity: Sequelize.TEXT,
+  type: Sequelize.TEXT
 })
 
 // Initialize finale
@@ -58,11 +68,16 @@ let userResource = finale.resource({
   endpoints: ['/posts', '/posts/:id']
 })
 
-// Resets the database and launches the express app on :8081
+let workdayResource = finale.resource({
+  model: Workday,
+  endpoints: ['/workday', '/workday/:id']
+})
+
+// Resets the database if force = true, and launches the express app on :15040
 database
   .sync({ force: false })
   .then(() => {
-    app.listen(8081, () => {
-      console.log('Listening to port localhost:8081')
+    app.listen(15040, () => {
+      console.log(`Listening to port ${hostName}:15040`)
     })
   })

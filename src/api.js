@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import axios from 'axios'
 
+// @CAIO: Config IP
+// const hostName = 'localhost'
+const hostName = '187.1.90.150'
+
 const client = axios.create({
-  baseURL: 'http://localhost:8081/',
+  baseURL: `http://${hostName}:15040/`,
   json: true
 })
 
@@ -21,6 +25,8 @@ export default {
       return req.data
     })
   },
+
+  // Posts
   getPosts () {
     return this.execute('get', '/posts')
   },
@@ -35,5 +41,22 @@ export default {
   },
   deletePost (id) {
     return this.execute('delete', `/posts/${id}`)
+  },
+
+  // Workday
+  getWorkdays () {
+    return this.execute('get', '/workday')
+  },
+  getWorkday (id) {
+    return this.execute('get', `/workday/${id}`)
+  },
+  createWorkday (data) {
+    return this.execute('post', '/workday', data)
+  },
+  updateWorkday (id, data) {
+    return this.execute('put', `/workday/${id}`, data)
+  },
+  deleteWorkday (id) {
+    return this.execute('delete', `/workday/${id}`)
   }
 }

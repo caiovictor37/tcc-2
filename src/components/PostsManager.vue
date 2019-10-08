@@ -3,29 +3,6 @@
     <h1 class="h1">Posts Manager</h1>
     <b-alert :show="loading" variant="info">Loading...</b-alert>
     <b-row>
-      <b-col>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Updated At</th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="post in posts" :key="post.id">
-              <td>{{ post.id }}</td>
-              <td>{{ post.title }}</td>
-              <td>{{ post.updatedAt }}</td>
-              <td class="text-right">
-                <a href="#" @click.prevent="populatePostToEdit(post)">Edit</a> -
-                <a href="#" @click.prevent="deletePost(post.id)">Delete</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </b-col>
       <b-col lg="3">
         <b-card :title="(model.id ? 'Edit Post ID#' + model.id : 'New Post')">
           <form @submit.prevent="savePost">
@@ -41,6 +18,29 @@
             </div>
           </form>
         </b-card>
+      </b-col>
+      <b-col>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Updated At</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="post in posts" :key="post.id">
+              <td>{{ post.id }}</td>
+              <td>{{ post.title }}</td>
+              <td>{{ formatTimestamp(post.updatedAt) }}</td>
+              <td class="text-right">
+                <a href="#" @click.prevent="populatePostToEdit(post)">Edit</a> -
+                <a href="#" @click.prevent="deletePost(post.id)">Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </b-col>
     </b-row>
   </div>
@@ -70,6 +70,7 @@ export default {
       this.model = Object.assign({}, post);
     },
     async savePost() {
+      // console.log(process.env.HOST);
       if (this.model.id) {
         await api.updatePost(this.model.id, this.model);
       } else {
@@ -90,6 +91,10 @@ export default {
     },
     resetModel() {
       this.model = {};
+    },
+    formatTimestamp(input) {
+      var variable = new Date(input)
+      return variable.toLocaleString();
     }
   }
 };
