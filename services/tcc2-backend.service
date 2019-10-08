@@ -1,0 +1,13 @@
+[Unit]
+Description=TCC 2 Backend - Digital Lean
+Documentation=http://187.1.90.150:15000
+After=network.target
+
+[Service]
+WorkingDirectory=/home/siemens/tcc2/src
+Type=simple
+ExecStart=/usr/bin/node /home/siemens/tcc2/src/server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
