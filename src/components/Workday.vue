@@ -4,26 +4,19 @@
     <b-alert :show="loading" variant="info">Loading...</b-alert>
     <b-row>
       <b-col lg="3">
-        <b-card :title="(model.id ? 'Edit Workday ID#' + model.id : 'New Workday')">
+        <b-card :title="'New Workday'">
           <form @submit.prevent="saveWorkday">
-            <b-form-group label="Name">
-              <b-form-input type="text" v-model="model.name"></b-form-input>
+            <b-form-group label="Workstation">
+              <b-form-select v-model="model.workstationId" :options="workstations" value-field="id" text-field="name" required></b-form-select>
             </b-form-group>
-            <b-form-group label="Activities">
-              <b-form-select v-model="model.activity" :options="activities"></b-form-select>
+            <b-form-group label="Worker">
+              <b-form-select v-model="model.workerId" :options="workers" value-field="id" text-field="name" required></b-form-select>
             </b-form-group>
-            <b-form-group label="Types">
-              <b-form-radio-group
-                id="radio-group-1"
-                v-model="model.type"
-                :options="types"
-                name="radios-stacked"
-                stacked
-              ></b-form-radio-group>
+            <b-form-group label="Activity">
+              <b-form-select v-model="model.activityId" :options="activities" value-field="id" text-field="name" required></b-form-select>
             </b-form-group>
             <div>
               <b-btn type="submit" variant="success">Save Workday</b-btn>
-              <b-button v-if="model.id" @click="resetModel()">New Workday</b-button>
             </div>
           </form>
         </b-card>
@@ -32,25 +25,21 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
+              <th>Workstation</th>
+              <th>Worker</th>
               <th>Activity</th>
               <th>Type</th>
-              <th>Updated At</th>
+              <th>Creation Date</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="Workday in Workdays" :key="Workday.id">
-              <td>{{ Workday.id }}</td>
-              <td>{{ Workday.name }}</td>
-              <td>{{ Workday.activity }}</td>
-              <td>{{ Workday.type }}</td>
-              <td>{{ formatTimestamp(Workday.updatedAt) }}</td>
-              <td class="text-right">
-                <a href="#" @click.prevent="populateWorkdayToEdit(Workday)">Edit</a> -
-                <a href="#" @click.prevent="deleteWorkday(Workday.id)">Delete</a>
-              </td>
+            <tr v-for="workday in workdays" :key="workday.id">
+              <td>{{ workdayWorkstation(workday.workstationId).name }}</td>
+              <td>{{ workdayWorker(workday.workerId).name }}</td>
+              <td>{{ workdayActivity(workday.activityId).name }}</td>
+              <td>{{ workdayActivity(workday.activityId).type }}</td>
+              <td>{{ formatTimestamp(workday.createdAt) }}</td>
             </tr>
           </tbody>
         </table>
@@ -66,16 +55,11 @@ export default {
   data() {
     return {
       loading: false,
-      Workdays: [],
-      model: {},
-      activities: [
-        "Atividade 1",
-        "Atividade 2",
-        "Atividade 3",
-        "Atividade 4",
-        "Atividade 5"
-      ],
-      types: ["Produtiva", "Não produtiva", "Parada", "Almoço"]
+      workdays: [],
+      workstations: [],
+      workers: [],
+      activities: [],
+      model: {}
     };
   },
   async created() {
@@ -84,25 +68,26 @@ export default {
   methods: {
     async refreshWorkdays() {
       this.loading = true;
-      this.Workdays = await api.getWorkdays();
+      this.workstations = await api.getWorkstations();
+      this.workers = await api.getWorkers();
+      this.activities = await api.getActivities();
+      this.workdays = await api.getWorkdays();
       this.loading = false;
     },
-    async populateWorkdayToEdit(Workday) {
-      this.model = Object.assign({}, Workday);
+    async populateWorkdayToEdit(workday) {
+      this.model = Object.assign({}, workday);
     },
     async saveWorkday() {
-      // console.log(process.env.HOST);
       if (this.model.id) {
         await api.updateWorkday(this.model.id, this.model);
       } else {
         await api.createWorkday(this.model);
       }
-      this.model = {}; // reset form
+      this.model = {};
       await this.refreshWorkdays();
     },
     async deleteWorkday(id) {
-      if (confirm("Are you sure you want to delete this Workday?")) {
-        // if we are editing a Workday we deleted, remove it from the form
+      if (confirm("Are you sure you want to delete this workday?")) {
         if (this.model.id === id) {
           this.model = {};
         }
@@ -110,13 +95,28 @@ export default {
         await this.refreshWorkdays();
       }
     },
-    resetModel() {
-      this.model = {};
-    },
     formatTimestamp(input) {
-      var variable = new Date(input);
+      var variable = new Date(input)
       return variable.toLocaleString();
-    }
+    },
+    workdayWorkstation(id) {
+      var workstation = this.workstations.find((element) => {
+        return element.id === id ? element : '';
+      });
+      return workstation;
+    },
+    workdayWorker(id) {
+      var worker = this.workers.find((element) => {
+        return element.id === id ? element : '';
+      });
+      return worker;
+    },
+    workdayActivity(id) {
+      var activity = this.activities.find((element) => {
+        return element.id === id ? element : '';
+      });
+      return activity;
+    },
   }
 };
 </script>

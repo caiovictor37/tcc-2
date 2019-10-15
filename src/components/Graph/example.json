@@ -1,0 +1,184 @@
+{
+    "name": "Empresa Exemplo",
+    "children": [
+        {
+            "name": "Estação de Trabalho 1",
+            "children": [
+                {
+                    "name": "Produtiva",
+                    "children": [
+                        {
+                            "name": "Atividade 1",
+                            "size": 3938
+                        },
+                        {
+                            "name": "Atividade 2",
+                            "size": 3812
+                        },
+                        {
+                            "name": "Atividade 3",
+                            "size": 6714
+                        },
+                        {
+                            "name": "Atividade 4",
+                            "size": 743
+                        }
+                    ]
+                },
+                {
+                    "name": "Não Produtiva",
+                    "children": [
+                        {
+                            "name": "Atividade 1",
+                            "size": 3534
+                        },
+                        {
+                            "name": "Atividade 2",
+                            "size": 5731
+                        },
+                        {
+                            "name": "Atividade 3",
+                            "size": 7840
+                        },
+                        {
+                            "name": "Atividade 4",
+                            "size": 5914
+                        },
+                        {
+                            "name": "Atividade 5",
+                            "size": 3416
+                        }
+                    ]
+                },
+                {
+                    "name": "Parada",
+                    "children": [
+                        {
+                            "name": "Atividade 1",
+                            "size": 7074
+                        },
+                        {
+                            "name": "Atividade 2",
+                            "size": 7074
+                        },
+                        {
+                            "name": "Atividade 3",
+                            "size": 7074
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Estação de Trabalho 2",
+            "children": [
+                {
+                    "name": "Produtiva",
+                    "children": [
+                        {
+                            "name": "Atividade 1",
+                            "size": 3938
+                        },
+                        {
+                            "name": "Atividade 2",
+                            "size": 3812
+                        },
+                        {
+                            "name": "Atividade 3",
+                            "size": 6714
+                        },
+                        {
+                            "name": "Atividade 4",
+                            "size": 743
+                        }
+                    ]
+                },
+                {
+                    "name": "Não Produtiva",
+                    "children": [
+                        {
+                            "name": "Atividade 1",
+                            "size": 3534
+                        },
+                        {
+                            "name": "Atividade 2",
+                            "size": 5731
+                        },
+                        {
+                            "name": "Atividade 3",
+                            "size": 7840
+                        },
+                        {
+                            "name": "Atividade 4",
+                            "size": 5914
+                        },
+                        {
+                            "name": "Atividade 5",
+                            "size": 3416
+                        }
+                    ]
+                },
+                {
+                    "name": "Parada",
+                    "children": [
+                        {
+                            "name": "Atividade 1",
+                            "size": 7074
+                        },
+                        {
+                            "name": "Atividade 2",
+                            "size": 7074
+                        },
+                        {
+                            "name": "Atividade 3",
+                            "size": 7074
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Estação de Trabalho 3",
+            "children": [
+                {
+                    "name": "Produtiva",
+                    "children": [
+                        {
+                            "name": "Atividade 1",
+                            "size": 3938
+                        },
+                        {
+                            "name": "Atividade 2",
+                            "size": 3812
+                        }
+                    ]
+                },
+                {
+                    "name": "Parada",
+                    "children": [
+                        {
+                            "name": "Atividade 1",
+                            "size": 3534
+                        },
+                        {
+                            "name": "Atividade 2",
+                            "size": 5731
+                        },
+                        {
+                            "name": "Atividade 3",
+                            "size": 7840
+                        },
+                        {
+                            "name": "Atividade 4",
+                            "size": 5914
+                        },
+                        {
+                            "name": "Atividade 5",
+                            "size": 3416
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
