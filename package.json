@@ -29,7 +29,8 @@
     "sqlite3": "^4.1.0",
     "vue": "^2.5.2",
     "vue-d3-sunburst": "^1.0.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "webpack-bundle-analyser": "^1.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",

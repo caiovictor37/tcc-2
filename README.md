@@ -1,6 +1,6 @@
 # tcc-2
 
-> A Vue.js project for TCC 2
+> A Vue.js project for TCC 2. Download latest Node JS [here](https://nodejs.org/en/) and follow the instructions
 
 ## Build Setup
 
