@@ -82,7 +82,21 @@ export default {
       this.activities = await api.getActivities()
       this.workdays = await api.getWorkdays()
       this.loading = false
-      console.log(this.workdays)
+      console.log(`ANTES`)
+      this.printArray(this.workdays)
+      this.workdays.sort(function (a, b) {
+        return a.activityId - b.activityId
+      })
+      this.workdays.sort(function (a, b) {
+        return a.workstationId - b.workstationId
+      })
+      console.log(`DEPOIS`)
+      this.printArray(this.workdays)
+    },
+    printArray (array) {
+      array.forEach(element => {
+        console.log(`${element.workstationId} / ${element.activityId}`)
+      })
     }
   }
 }
