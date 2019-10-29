@@ -25,7 +25,7 @@
     "finale-rest": "^1.0.6",
     "jquery": "^3.4.1",
     "mysql2": "^1.7.0",
-    "sequelize": "^4.44.3",
+    "sequelize": "^5.15.1",
     "sqlite3": "^4.1.0",
     "vue": "^2.5.2",
     "vue-d3-sunburst": "^1.0.0",
